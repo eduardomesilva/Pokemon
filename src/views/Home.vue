@@ -1,7 +1,34 @@
 <template>
   <div class="container">
     <div class="row mt-2">
-      <div class="col mb-2">palco</div>
+      
+      <!-- início lado esquerdo -->
+      <div class="col mb-2">
+        <div class="card palco">
+          <div class="card-header"></div>
+
+          <div class="card-body bg-pokebola bg-normal">
+            <div class="pokemon">
+              <transition>
+                <img src="../assets/imgs/pokemons/001.png" v-show="exibir">
+              </transition>
+            </div>
+          </div>
+
+          <div class="card-footer">
+         
+          <nav class="nav nav-pills nav-fill">
+            <!-- menu de navegação -->
+          </nav>
+
+          <div class="detalhes">
+            <!-- exibe dados de acordo com o menu de navegação -->
+          </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- fim lado esquerdo -->
 
       <!-- início lado direito -->
       <div class="col mb-2 pokedex">        
@@ -29,7 +56,7 @@
           <div class="pokedex-catalogo">
 
             <!-- início listagem dinâmica -->
-            <div class="cartao-pokemon bg-grama">
+            <div class="cartao-pokemon bg-grama" @click="exibir = !exibir">
               <h1>1 Bulbasaur</h1>
               <span>grama</span>
               <div class="cartao-pokemon-img">
@@ -49,7 +76,12 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data(){
+    return{
+      exibir: false,
+    }
+  }
 }
 </script>
 
@@ -60,6 +92,60 @@ body {
 </style>
 
 <style scoped>
+/* 
+  .v-enter-from {
+    opacity: 0;
+  }
+
+  .v-enter-active {
+    transition: opacity 2s;;
+  }
+
+  .v-enter-to {
+    opacity: 1;
+  }
+
+  .v-leave-from {
+    opacity: 1;
+  }
+
+  .v-leave-active {
+    transition: opacity 1s;;
+  }
+
+  .v-leave-to {
+    opacity: 0;
+  } */
+
+  
+  .v-enter-from {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+
+  .v-enter-active {
+    transition: all 2s;
+  }
+
+  .v-enter-to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+
+  .v-leave-from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  .v-leave-active {
+    transition: all 1s;
+  }
+  .v-leave-to {
+    opacity: 0;
+    transform: translateX(150px);
+  } 
+
 .pokedex {
   padding: 20px;
   background-color: #ffffff;
@@ -131,6 +217,31 @@ body {
 
 .bg-normal {
   background-color: #cecece
+}
+
+.bg-pokebola {
+  background-image: url("../assets/imgs/pokebola.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+.palco {
+  color: #fff;
+  background-color: #333;
+  -webkit-box-shadow: 2px 2px 10px rgba(230, 223, 223, 0.77);
+  -moz-box-shadow: 2px 2px 10px rgba(230, 223, 223, 0.77);
+  box-shadow: 2px 2px 10px rgba(230, 223, 223, 0.77);
+  border-radius: 10px;
+}
+
+.pokemon {
+  display: block;
+  text-align: center;
+  height: 215px;
+}
+
+.detalhes {
+  margin: 20px 30px 20px 30px;
 }
 
 </style>
